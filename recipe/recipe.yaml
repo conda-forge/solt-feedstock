@@ -1,12 +1,14 @@
-{% set name = "solt" %}
-{% set version = "1.3.0" %}
+schema_version: 1
+
+context:
+  version: 1.3.0
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: solt
+  version: ${{ version }}
 
 source:
-  url: https://github.com/aegoroff/solt/archive/v{{ version }}.tar.gz
+  url: https://github.com/aegoroff/solt/archive/v${{ version }}.tar.gz
   sha256: 7989ae162f5d417d210cd288149d6b60e5c2ee1563d8e5816989e86aede24092
 
 build:
@@ -14,21 +16,21 @@ build:
 
 requirements:
   build:
-    - {{ compiler('go-nocgo') }}
+    - ${{ compiler('go-nocgo') }}
     - go-licenses
 
-test:
-  commands:
-    - solt --help
+tests:
+  - script:
+      - solt --help
 
 about:
-  home: https://github.com/aegoroff/solt
   license: MIT
   license_file:
     - LICENSE.txt
     - license-files/
   summary: Small console app written in Go that allows you to easily analyze sources and Microsoft Visual Studio solutions and projects.
-  dev_url: https://github.com/aegoroff/solt
+  homepage: https://github.com/aegoroff/solt
+  repository: https://github.com/aegoroff/solt
 
 extra:
   recipe-maintainers:
